@@ -2,6 +2,7 @@ package service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * The Store class is a service that provides a key-value store

@@ -1,12 +1,13 @@
 package client;
 
-import service.PlainService;
+import service.Service;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+import java.util.logging.Level;
 
 /**
  * The TCPClient class is a client connected to the server using TCP
@@ -39,7 +40,7 @@ public class TCPClient implements Client {
     public void connect() {
         // handle uninitialized client
         if (port == -1 || hostname == null) {
-            PlainService.log("no port or host set up");
+            Service.logger.log(Level.SEVERE,"no port or host set up");
             return;
         }
 
@@ -48,9 +49,9 @@ public class TCPClient implements Client {
             socket = new Socket(hostname, port);
             // use a timeout mechanism to deal with an unresponsive server
             socket.setSoTimeout(2000);
-            PlainService.log("connect to <address:" + hostname + ">" + "<port:" + port + ">");
+            Service.logger.log(Level.INFO,"connect to <address:" + hostname + ">" + "<port:" + port + ">");
         } catch (Exception e) {
-            PlainService.log("cannot connect to <address:" + hostname + ">" + "<port:" + port + ">");
+            Service.logger.log(Level.WARNING,"cannot connect to <address:" + hostname + ">" + "<port:" + port + ">");
         }
     }
 
@@ -64,7 +65,7 @@ public class TCPClient implements Client {
     public String send(String msg) {
         // handle uninitialized client socket
         if (socket == null) {
-            PlainService.log("socket is not connected");
+            Service.logger.log(Level.SEVERE,"socket is not connected");
             return "";
         }
 
@@ -75,14 +76,14 @@ public class TCPClient implements Client {
             writer.write(msg);
             writer.newLine();
             writer.flush();
-            PlainService.log("send request: " + msg);
+            Service.logger.log(Level.INFO, "send request: " + msg);
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             response = reader.readLine();
-            PlainService.log("response received: " + response);
+            Service.logger.log(Level.INFO,"response received: " + response);
             reader.close();
             writer.close();
         } catch (Exception e) {
-            PlainService.log(e.getClass() + ": unable to send message");
+            Service.logger.log(Level.WARNING,e.getClass() + ": unable to send message");
         }
         return response;
     }
@@ -95,9 +96,9 @@ public class TCPClient implements Client {
         if (socket != null) {
             try {
                 socket.close();
-                PlainService.log("socket closed");
+                Service.logger.log(Level.INFO,"socket closed");
             } catch (Exception e) {
-                PlainService.log(e.getClass() + ": unable to close the socket");
+                Service.logger.log(Level.WARNING,e.getClass() + ": unable to close the socket");
             }
         }
     }
@@ -113,23 +114,6 @@ public class TCPClient implements Client {
             port = Integer.parseInt(args[1]);
         }
 
-        String[] msgs = new String[]{
-                "PUT,a,1",
-                "GET,a",
-                "PUT,b,2",
-                "PUT,c,3",
-                "DELETE,a",
-                "PUT,a,4",
-                "PUT,d,4",
-                "GET,a",
-                "GET,b",
-                "GET,c",
-                "GET,d",
-                "DELETE,a",
-                "DELETE,b",
-                "DELETE,c",
-                "DELETE,d"
-        };
         for (String str : msgs) {
             TCPClient client = new TCPClient();
             client.setHostname(host);

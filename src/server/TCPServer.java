@@ -1,12 +1,12 @@
 package server;
 
-import service.PlainService;
 import service.Service;
 import service.Store;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.logging.Level;
 
 /**
  * The TCPServer class is a server using TCP
@@ -43,17 +43,17 @@ public class TCPServer implements Server {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String request = reader.readLine();
-            PlainService.log("request received: " + request);
-            String response = service == null ? "No service available" : service.process(request);
+            Service.logger.log(Level.INFO,"request received: " + request);
+            String response = service.process(request);
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             writer.write(response);
             writer.newLine();
             writer.flush();
             reader.close();
             writer.close();
-            PlainService.log("response sent: " + response);
+            Service.logger.log(Level.INFO,"response sent: " + response);
         } catch (Exception e) {
-            PlainService.log(e.getClass() + ": unable to get response");
+            Service.logger.log(Level.WARNING,e.getClass() + ": unable to get response");
         }
     }
 
@@ -64,16 +64,16 @@ public class TCPServer implements Server {
     public void start() {
         // handle uninitialized socket
         if (port == -1) {
-            PlainService.log("no port set");
+            Service.logger.log(Level.WARNING,"no port set");
             return;
         }
 
         // create the server socket
         try {
             serverSocket = new ServerSocket(port);
-            PlainService.log("server listens to " + port);
+            Service.logger.log(Level.INFO, "server listens to " + port);
         } catch (Exception e) {
-            PlainService.log(e.getClass() + ": unable to start the server");
+            Service.logger.log(Level.WARNING,e.getClass() + ": unable to start the server");
         }
 
         // accept the connection
@@ -81,10 +81,11 @@ public class TCPServer implements Server {
             try {
                 Socket socket = serverSocket.accept();
                 socket.setSoTimeout(2000);
+                Thread.sleep(1000);
                 execute(socket);
                 socket.close();
             } catch (Exception e) {
-                PlainService.log(e.getClass() + ": unable to connect to the client");
+                Service.logger.log(Level.WARNING,e.getClass() + ": unable to connect to the client");
             }
         }
     }
@@ -97,9 +98,9 @@ public class TCPServer implements Server {
         if (serverSocket != null) {
             try {
                 serverSocket.close();
-                PlainService.log("server closed");
+                Service.logger.log(Level.INFO,"server closed");
             } catch (Exception e) {
-                PlainService.log("unable to close the socket");
+                Service.logger.log(Level.WARNING,"unable to close the socket");
             }
         }
     }

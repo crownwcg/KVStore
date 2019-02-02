@@ -1,12 +1,12 @@
 package server;
 
-import service.PlainService;
 import service.Service;
 import service.Store;
 
 import java.net.DatagramSocket;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
+import java.util.logging.Level;
 
 /**
  * The UDPServer class is a server using TCP
@@ -42,16 +42,16 @@ public class UDPServer implements Server {
     public void start() {
         // handle uninitialized socket
         if (port == -1) {
-            PlainService.log("no set up for server port");
+            Service.logger.log(Level.WARNING,"no set up for server port");
             return;
         }
 
         // create the server socket
         try {
             socket = new DatagramSocket(port);
-            PlainService.log("server listens to " + port);
+            Service.logger.log(Level.INFO,"server listens to " + port);
         } catch (Exception e) {
-            PlainService.log(e.getClass() + ": unable to start the server.");
+            Service.logger.log(Level.WARNING,e.getClass() + ": unable to start the server.");
         }
 
         // get request and response to the client
@@ -61,32 +61,33 @@ public class UDPServer implements Server {
             try {
                 socket.receive(request);
             } catch (Exception e) {
-                PlainService.log(e.getClass() + ": unable to receive request.");
+                Service.logger.log(Level.WARNING,e.getClass() + ": unable to receive request.");
             }
 
             InetAddress address = request.getAddress();
             int port = request.getPort();
 
-            PlainService.log(
+            Service.logger.log(Level.INFO,
                     "receive request from client: " +
                     new String(request.getData(), 0, request.getLength()) +
                     " of length " + request.getLength() +
                     " <address:" + request.getAddress() + ">" +
                     "<port:" + request.getPort() + ">");
 
-            byte[] res = service == null ? "No service available".getBytes() : service.process(new String(request.getData(), 0, request.getLength())).getBytes();
+            byte[] res = service.process(new String(request.getData(), 0, request.getLength())).getBytes();
             DatagramPacket response = new DatagramPacket(res, res.length, address, port);
 
             try {
+                Thread.sleep(1000);
                 socket.send(response);
-                PlainService.log(
+                Service.logger.log(Level.INFO,
                         "send response from server: " +
                         new String(response.getData(), 0, response.getLength()) +
                         " of length " + response.getLength() +
                         " <address:" + response.getAddress() + ">" +
                         "<port:" + response.getPort() + ">");
             } catch(Exception e) {
-                PlainService.log(e.getClass() + ": unable to send response.");
+                Service.logger.log(Level.WARNING,e.getClass() + ": unable to send response.");
             }
         }
     }
@@ -103,7 +104,7 @@ public class UDPServer implements Server {
      * Local test for UDP server
      */
     public static void main(String[] args) {
-        int port = 8000;
+        int port = 8080;
         if (args.length == 1) {
             port = Integer.parseInt(args[0]);
         }

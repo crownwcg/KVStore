@@ -1,10 +1,11 @@
 package client;
 
+import service.Service;
+
 import java.net.DatagramSocket;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
-
-import service.PlainService;
+import java.util.logging.Level;
 
 /**
  * The UDPClient class is a client connected to the server using UDP
@@ -23,7 +24,7 @@ public class UDPClient implements Client {
         try {
             this.address = InetAddress.getByName(hostname);
         } catch (Exception e) {
-            PlainService.log(e.getClass() + ": wrong hostname");
+            Service.logger.log(Level.WARNING,e.getClass() + ": wrong hostname");
         }
     }
 
@@ -42,9 +43,9 @@ public class UDPClient implements Client {
     public void connect() {
         try {
             socket = new DatagramSocket();
-            PlainService.log("initiate the socket");
+            Service.logger.log(Level.INFO,"initiate the socket");
         } catch (Exception e) {
-            PlainService.log(e.getClass() + ": unable to initiate the socket.");
+            Service.logger.log(Level.WARNING,e.getClass() + ": unable to initiate the socket.");
         }
     }
 
@@ -58,22 +59,23 @@ public class UDPClient implements Client {
     public String send(String msg) {
         // handle uninitialized client socket
         if (address == null || port == -1) {
-            PlainService.log("no address or port.");
+            Service.logger.log(Level.SEVERE,"no address or port.");
             return "";
         }
 
         // send request
         byte[] msgBytes = msg.getBytes();
         DatagramPacket request = new DatagramPacket(msgBytes, msgBytes.length, address, port);
-        PlainService.log("connect to <address:" + address + ">" + "<port:" + port + ">");
 
         try {
             socket.send(request);
             // use a timeout mechanism to deal with an unresponsive server
             socket.setSoTimeout(2000);
-            PlainService.log("send request: " + new String(request.getData(), 0, request.getLength()));
+            Service.logger.log(Level.INFO,"send request: " +
+                    new String(request.getData(), 0, request.getLength()) +
+                    " to <address:" + address + ">" + "<port:" + port + ">");
         } catch (Exception e) {
-            PlainService.log(e.getClass() + ": unable to send request.");
+            Service.logger.log(Level.WARNING,e.getClass() + ": unable to send request.");
         }
 
         // get response
@@ -81,12 +83,12 @@ public class UDPClient implements Client {
         try {
             socket.receive(response);
         } catch (Exception e) {
-            PlainService.log(e.getClass() + ": unable to receive response.");
+            Service.logger.log(Level.WARNING,e.getClass() + ": unable to receive response.");
             return  "";
         }
 
         String received = new String(response.getData(), 0, response.getLength());
-        PlainService.log("response received: " + received);
+        Service.logger.log(Level.INFO,"response received: " + received);
         return received;
     }
 
@@ -105,29 +107,12 @@ public class UDPClient implements Client {
      */
     public static void main(String[] args) {
         String host = "localhost";
-        int port = 8000;
+        int port = 8080;
         if (args.length == 2) {
             host = args[0];
             port = Integer.parseInt(args[1]);
         }
 
-        String[] msgs = new String[]{
-                "PUT,a,1",
-                "GET,a",
-                "PUT,b,2",
-                "PUT,c,3",
-                "DELETE,a",
-                "PUT,a,4",
-                "PUT,d,4",
-                "GET,a",
-                "GET,b",
-                "GET,c",
-                "GET,d",
-                "DELETE,a",
-                "DELETE,b",
-                "DELETE,c",
-                "DELETE,d"
-        };
         for (String str : msgs) {
             UDPClient client = new UDPClient();
             client.setAddress(host);
