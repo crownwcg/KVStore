@@ -48,7 +48,7 @@ public class TCPClient implements Client {
         try {
             socket = new Socket(hostname, port);
             // use a timeout mechanism to deal with an unresponsive server
-            socket.setSoTimeout(2000);
+            socket.setSoTimeout(10000);
             Service.logger.log(Level.INFO,"connect to <address:" + hostname + ">" + "<port:" + port + ">");
         } catch (Exception e) {
             Service.logger.log(Level.WARNING,"cannot connect to <address:" + hostname + ">" + "<port:" + port + ">");

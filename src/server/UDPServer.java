@@ -6,16 +6,19 @@ import service.Store;
 import java.net.DatagramSocket;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Level;
 
 /**
  * The UDPServer class is a server using TCP
  */
-public class UDPServer implements Server {
+public class UDPServer implements Server, Runnable {
     private DatagramSocket socket;          /* server socket */
     private int port = -1;                  /* port number */
     private Service service;                /* service of the server */
     private byte[] buf = new byte[1000];    /* UDP packet */
+    private ExecutorService threadPool = Executors.newFixedThreadPool(10);
 
     @Override
     /**
@@ -33,6 +36,41 @@ public class UDPServer implements Server {
      */
     public void setService(Service service) {
         this.service = service;
+    }
+
+    public void execute() {
+        DatagramPacket request = new DatagramPacket(buf, buf.length);
+
+        try {
+            socket.receive(request);
+        } catch (Exception e) {
+            Service.logger.log(Level.WARNING,e.getClass() + ": unable to receive request.");
+        }
+
+        InetAddress address = request.getAddress();
+        int port = request.getPort();
+
+        Service.logger.log(Level.INFO,
+                "receive request from client: " +
+                        new String(request.getData(), 0, request.getLength()) +
+                        " of length " + request.getLength() +
+                        " <address:" + request.getAddress() + ">" +
+                        "<port:" + request.getPort() + ">");
+
+        byte[] res = service.process(new String(request.getData(), 0, request.getLength())).getBytes();
+        DatagramPacket response = new DatagramPacket(res, res.length, address, port);
+
+        try {
+            socket.send(response);
+            Service.logger.log(Level.INFO,
+                    "send response from server: " +
+                            new String(response.getData(), 0, response.getLength()) +
+                            " of length " + response.getLength() +
+                            " <address:" + response.getAddress() + ">" +
+                            "<port:" + response.getPort() + ">");
+        } catch(Exception e) {
+            Service.logger.log(Level.WARNING,e.getClass() + ": unable to send response.");
+        }
     }
 
     @Override
@@ -56,39 +94,16 @@ public class UDPServer implements Server {
 
         // get request and response to the client
         while (true) {
-            DatagramPacket request = new DatagramPacket(buf, buf.length);
-
             try {
-                socket.receive(request);
+                Service.logger.log(Level.INFO,"server sleeps");
+                Thread.sleep(2000);
+                Service.logger.log(Level.INFO,"server awakes");
             } catch (Exception e) {
-                Service.logger.log(Level.WARNING,e.getClass() + ": unable to receive request.");
+                Service.logger.log(Level.WARNING,e.getClass() + ": thread sleep error.");
             }
-
-            InetAddress address = request.getAddress();
-            int port = request.getPort();
-
-            Service.logger.log(Level.INFO,
-                    "receive request from client: " +
-                    new String(request.getData(), 0, request.getLength()) +
-                    " of length " + request.getLength() +
-                    " <address:" + request.getAddress() + ">" +
-                    "<port:" + request.getPort() + ">");
-
-            byte[] res = service.process(new String(request.getData(), 0, request.getLength())).getBytes();
-            DatagramPacket response = new DatagramPacket(res, res.length, address, port);
-
-            try {
-                Thread.sleep(1000);
-                socket.send(response);
-                Service.logger.log(Level.INFO,
-                        "send response from server: " +
-                        new String(response.getData(), 0, response.getLength()) +
-                        " of length " + response.getLength() +
-                        " <address:" + response.getAddress() + ">" +
-                        "<port:" + response.getPort() + ">");
-            } catch(Exception e) {
-                Service.logger.log(Level.WARNING,e.getClass() + ": unable to send response.");
-            }
+            this.threadPool.execute(() -> {
+                execute();
+            });
         }
     }
 
@@ -98,6 +113,11 @@ public class UDPServer implements Server {
      */
     public void stop() {
         socket.close();
+    }
+
+    @Override
+    public void run() {
+        start();
     }
 
     /**
@@ -111,7 +131,7 @@ public class UDPServer implements Server {
 
         UDPServer server = new UDPServer();
         server.setPort(port);
-        server.setService(new Store());
-        server.start();
+        server.setService(Store.getInstance());
+        new Thread(server).start();
     }
 }

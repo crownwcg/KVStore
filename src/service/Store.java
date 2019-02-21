@@ -2,13 +2,34 @@ package service;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 /**
  * The Store class is a service that provides a key-value store
  */
 public class Store implements Service {
-    private Map<String, String> store = new HashMap<>();    /* the store */
+    private Map<String, String> store;    /* the store */
+    private static Store storeInstance = null;
+
+    // singleton
+    private Store() {
+        store = new HashMap<>();
+    }
+
+    public static Service getInstance() {
+        if (storeInstance == null) {
+            storeInstance = new Store();
+            populate(storeInstance.store);
+        }
+        return storeInstance;
+    }
+
+    private static void populate(Map<String, String> map) {
+        map.put("a", "a");
+        map.put("b", "b");
+        map.put("c", "c");
+        map.put("d", "d");
+        map.put("e", "e");
+    }
 
     @Override
     /**
@@ -17,7 +38,7 @@ public class Store implements Service {
      * @param request request to process
      * @return response to the request
      */
-    public String process(String request) {
+    public synchronized String process(String request) {
         String[] msg = request.split(",");
         String ope = msg[0].toUpperCase();
 

@@ -3,18 +3,24 @@ package server;
 import service.Service;
 import service.Store;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Level;
 
 /**
  * The TCPServer class is a server using TCP
  */
-public class TCPServer implements Server {
+public class TCPServer implements Server, Runnable {
     private int port = -1;                  /* port number */
     private ServerSocket serverSocket;      /* server socket */
     private Service service;                /* service of the server */
+    private ExecutorService threadPool = Executors.newFixedThreadPool(10);
 
     @Override
     /**
@@ -36,8 +42,6 @@ public class TCPServer implements Server {
 
     /**
      * Process the request received from the socket
-     *
-     * @param socket the listening socket
      */
     public void execute(Socket socket) {
         try {
@@ -79,11 +83,19 @@ public class TCPServer implements Server {
         // accept the connection
         while (true) {
             try {
-                Socket socket = serverSocket.accept();
-                socket.setSoTimeout(2000);
+                Service.logger.log(Level.INFO,"server sleeps");
                 Thread.sleep(1000);
-                execute(socket);
-                socket.close();
+                Service.logger.log(Level.INFO,"server awakes");
+            } catch (Exception e) {
+                Service.logger.log(Level.WARNING,e.getClass() + ": thread sleep error.");
+            }
+
+            try {
+                Socket socket = serverSocket.accept();
+                socket.setSoTimeout(10000);
+                this.threadPool.execute(() -> {
+                    execute(socket);
+                });
             } catch (Exception e) {
                 Service.logger.log(Level.WARNING,e.getClass() + ": unable to connect to the client");
             }
@@ -105,6 +117,11 @@ public class TCPServer implements Server {
         }
     }
 
+    @Override
+    public void run() {
+        start();
+    }
+
     /**
      * Local test for TCP server
      */
@@ -116,7 +133,7 @@ public class TCPServer implements Server {
 
         TCPServer server = new TCPServer();
         server.setPort(port);
-        server.setService(new Store());
-        server.start();
+        server.setService(Store.getInstance());
+        new Thread(server).start();
     }
 }

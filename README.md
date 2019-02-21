@@ -9,7 +9,7 @@ cd src
 #### Compile
 
 ```
-javac client/*.java server/*.java service/*.java
+javac client/*.java server/*.java service/*.java rpc/*.java
 ```
 
 #### Run TCP Server
@@ -59,6 +59,29 @@ By using customer port number and hostname
 ```
 java client.UDPClient localhost 8080
 ```
+#### Run RMI Server
+
+By using default settings
+```
+java rpc.RMIServer
+```
+
+By using customer port number
+```
+java rpc.RMIServer 9000
+```
+
+#### Run RMI Client
+
+By using default settings
+```
+java rpc.RMIClient
+```
+
+By using customer port number and hostname
+```
+java rpc.RMIClient localhost 9000
+```
 
 The test cases is hardcoded as 
 ```
@@ -83,5 +106,5 @@ String[] msgs = new String[]{
 
 After running
 ```
-rm client/*.class server/*.class service/*.class
+rm client/*.class server/*.class service/*.class rpc/*.class
 ```

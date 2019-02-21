@@ -2,6 +2,9 @@ package server;
 
 import service.Service;
 
+/**
+ * The interface provides necessary function for a server to work
+ */
 public interface Server {
 
     /**
