@@ -118,7 +118,7 @@
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
-              <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+              <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -431,7 +431,7 @@
       <workItem from="1551849520127" duration="597000" />
       <workItem from="1551856680925" duration="9359000" />
       <workItem from="1551984386317" duration="8581000" />
-      <workItem from="1551995463170" duration="3874000" />
+      <workItem from="1551995463170" duration="3929000" />
     </task>
     <servers />
   </component>
@@ -444,7 +444,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69169000" />
+    <option name="totallyTimeSpent" value="69224000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -459,7 +459,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1695279" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1695279" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -472,7 +472,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.329602" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32961586" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.26022306" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.26022306" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5028612" side_tool="true" weight="0.3283767" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49928468" weight="0.3283767" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
@@ -651,7 +651,7 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
-          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
         </state>
       </provider>
     </entry>
