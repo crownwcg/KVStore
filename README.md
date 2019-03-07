@@ -1,5 +1,15 @@
 ### Instruction
 
+This is Replicated (using 2-Phase Commit) Multi-threaded Key-Value Store using RPC implemntation of project3 of course CS6550.
+It is different from two ways from single server-client connection. 
+Key-Value Store Servers are across 5 distinct servers to increase Server bandwidth and ensure availability, by replicating key-value store at each of 5 different instances of servers.   
+Note that client code has not been changed radically, only in that clients should be able to contact any of the five KV replica servers instead of a single server and get consistent data back from any of the replicas (in the case of GETs).  
+Client should also be able to issue PUT operations and DELETE operations to any of the five replicas.   
+On PUT or DELETE operations, servers ensure each of the replicated KV stores at each replica is consistent, by implementing a two-phase protocol for updates. 
+The project assumes no servers will fail such that 2 Phase Commit will not stall. 
+Consequently, whenever a client issues a PUT or a DELETE to *any* server replica, that receiving replica will ensure the updates have been received and commited.  
+
+
 #### Go to directory
 
 ```
@@ -9,100 +19,39 @@ cd src
 #### Compile
 
 ```
-javac client/*.java server/*.java service/*.java rpc/*.java
+javac client/*.java server/*.java service/*.java
 ```
 
-#### Run TCP Server
+#### Run Servers with different terminals
 
-By using default settings
-```
-java server.TCPServer
-```
+examples:
 
-By using customer port number
 ```
-java server.TCPServer 8000
+java server.ServerNode 1000 1001 1002 1003 1004
 ```
-
-#### Run TCP Client
-
-By using default settings
 ```
-java client.TCPClient
+java server.ServerNode 1001 1000 1002 1003 1004
 ```
-
-By using customer port number and hostname
 ```
-java client.TCPClient localhost 8000
+java server.ServerNode 1002 1000 1001 1003 1004
+```
+```
+java server.ServerNode 1003 1000 1001 1002 1004
+```
+```
+java server.ServerNode 1004 1000 1001 1002 1003
 ```
 
-#### Run UDP Server
-
-By using default settings
-```
-java server.UDPServer
-```
-
-By using customer port number
-```
-java server.UDPServer 8080
-```
-
-#### Run UDP Client
-
-By using default settings
-```
-java client.UDPClient
-```
+#### Run Client
 
 By using customer port number and hostname
 ```
-java client.UDPClient localhost 8080
-```
-#### Run RMI Server
-
-By using default settings
-```
-java rpc.RMIServer
+java client.Client localhost 1000
 ```
 
-By using customer port number
-```
-java rpc.RMIServer 9000
-```
+#### Scenario
 
-#### Run RMI Client
-
-By using default settings
-```
-java rpc.RMIClient
-```
-
-By using customer port number and hostname
-```
-java rpc.RMIClient localhost 9000
-```
-
-The test cases is hardcoded as 
-```
-String[] msgs = new String[]{
-        "PUT,a,1",
-        "GET,a",
-        "PUT,b,2",
-        "PUT,c,3",
-        "DELETE,a",
-        "PUT,a,4",
-        "PUT,d,4",
-        "GET,a",
-        "GET,b",
-        "GET,c",
-        "GET,d",
-        "DELETE,a",
-        "DELETE,b",
-        "DELETE,c",
-        "DELETE,d"
-};
-```
+When servers start in five terminals, one client can run in one terminal to connect with server in port 1000(as above settings), if it issues a put or delete operation with the key, another client connecting port 1002 can get with the key.
 
 After running
 ```

@@ -2,7 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5974c631-52ba-4626-9558-6eea8e81d531" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/server/RemoteStoreImp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/server/ServerNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/Log.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KVStore/client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KVStore/client/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KVStore/client/TCPClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KVStore/client/UDPClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KVStore/rpc/RMIClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KVStore/rpc/RMIServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KVStore/rpc/RMIService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KVStore/rpc/RMIStore.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KVStore/server/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KVStore/server/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KVStore/server/TCPServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KVStore/server/UDPServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KVStore/service/Service.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KVStore/service/Store.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KVStore/service/Store.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/TCPClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/UDPClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rpc/RMIClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rpc/RMIServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rpc/RMIService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/RemoteStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rpc/RMIStore.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/TCPServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/UDPServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/Service.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Store.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,22 +43,24 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/rpc/RMIServer.java">
+        <entry file="file://$PROJECT_DIR$/src/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="46" column="43" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="43" />
+            <state relative-caret-position="150">
+              <caret line="59" selection-start-line="59" selection-end-line="61" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#782#783#0" expanded="true" />
+                <element signature="e#816#817#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/rpc/RMIClient.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/server/ServerNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="67" column="23" lean-forward="true" selection-start-line="67" selection-start-column="23" selection-end-line="67" selection-end-column="23" />
+            <state relative-caret-position="120">
+              <caret line="27" column="33" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -40,17 +71,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/client/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/service/Service.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+            <state relative-caret-position="144">
+              <caret line="92" selection-start-line="92" selection-end-line="98" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -58,8 +83,80 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/service/Store.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="28" column="26" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
+            <state relative-caret-position="225">
+              <caret line="85" column="29" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#557#558#0" expanded="true" />
+                <element signature="e#606#607#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/service/Message.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
+              <folding>
+                <element signature="e#1566#1567#0" expanded="true" />
+                <element signature="e#1592#1593#0" expanded="true" />
+                <element signature="e#1630#1631#0" expanded="true" />
+                <element signature="e#1660#1661#0" expanded="true" />
+                <element signature="e#1692#1693#0" expanded="true" />
+                <element signature="e#1720#1721#0" expanded="true" />
+                <element signature="e#1762#1763#0" expanded="true" />
+                <element signature="e#1796#1797#0" expanded="true" />
+                <element signature="e#1829#1830#0" expanded="true" />
+                <element signature="e#1855#1856#0" expanded="true" />
+                <element signature="e#1896#1897#0" expanded="true" />
+                <element signature="e#1926#1927#0" expanded="true" />
+                <element signature="e#1959#1960#0" expanded="true" />
+                <element signature="e#1988#1989#0" expanded="true" />
+                <element signature="e#2032#2033#0" expanded="true" />
+                <element signature="e#2068#2069#0" expanded="true" />
+                <element signature="e#2101#2102#0" expanded="true" />
+                <element signature="e#2130#2131#0" expanded="true" />
+                <element signature="e#2174#2175#0" expanded="true" />
+                <element signature="e#2210#2211#0" expanded="true" />
+                <element signature="e#2239#2240#0" expanded="true" />
+                <element signature="e#2266#2267#0" expanded="true" />
+                <element signature="e#2304#2305#0" expanded="true" />
+                <element signature="e#2336#2337#0" expanded="true" />
+                <element signature="e#2368#2369#0" expanded="true" />
+                <element signature="e#2462#2463#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="382">
+                <caret line="53" column="180" selection-start-line="53" selection-start-column="180" selection-end-line="53" selection-end-column="180" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/server/RemoteStore.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -68,10 +165,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/rpc/RMIService.java">
+        <entry file="file://$PROJECT_DIR$/src/server/RemoteStoreImp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+            <state relative-caret-position="240">
+              <caret line="116" column="30" selection-start-line="116" selection-start-column="30" selection-end-line="116" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -80,45 +177,16 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/rpc/RMIStore.java">
+        <entry file="file://$PROJECT_DIR$/src/service/Log.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
+            <state relative-caret-position="284">
+              <caret line="41" column="37" selection-start-line="41" selection-start-column="37" selection-end-line="41" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/server/Server.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" selection-start-line="26" selection-end-line="28" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/server/UDPServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1260">
-              <caret line="96" selection-start-line="96" selection-end-line="102" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/server/TCPServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="57" column="28" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#326#327#0" expanded="true" />
+                <element signature="e#367#368#0" expanded="true" />
+                <element signature="e#486#487#0" expanded="true" />
+                <element signature="e#530#531#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -160,25 +228,38 @@
         <option value="$PROJECT_DIR$/src/server/Processor.java" />
         <option value="$PROJECT_DIR$/src/server/TCPProcessor.java" />
         <option value="$PROJECT_DIR$/src/server/UDPProcessor.java" />
-        <option value="$PROJECT_DIR$/src/client/Client.java" />
-        <option value="$PROJECT_DIR$/src/server/RMIServer.java" />
         <option value="$PROJECT_DIR$/src/rpc/RMI.java" />
         <option value="$PROJECT_DIR$/src/rpc/RMISer.java" />
-        <option value="$PROJECT_DIR$/src/server/Server.java" />
         <option value="$PROJECT_DIR$/src/client/TCPClient.java" />
         <option value="$PROJECT_DIR$/src/server/UDPServer.java" />
         <option value="$PROJECT_DIR$/src/server/TCPServer.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/rpc/RMIServer.java" />
         <option value="$PROJECT_DIR$/src/rpc/RMIService.java" />
         <option value="$PROJECT_DIR$/src/service/Service.java" />
         <option value="$PROJECT_DIR$/src/rpc/RMIClient.java" />
         <option value="$PROJECT_DIR$/src/rpc/RMIStore.java" />
+        <option value="$PROJECT_DIR$/src/service/StoreMessage.java" />
+        <option value="$PROJECT_DIR$/src/service/RMIStore.java" />
+        <option value="$PROJECT_DIR$/src/service/RMIService.java" />
+        <option value="$PROJECT_DIR$/src/service/RMIServiceImp.java" />
+        <option value="$PROJECT_DIR$/src/service/Logger.java" />
+        <option value="$PROJECT_DIR$/src/client/RMIClient.java" />
+        <option value="$PROJECT_DIR$/src/server/RMIServer.java" />
+        <option value="$PROJECT_DIR$/src/server/DistributedServer.java" />
+        <option value="$PROJECT_DIR$/src/server/RemoteStore.java" />
+        <option value="$PROJECT_DIR$/src/client/Client.java" />
+        <option value="$PROJECT_DIR$/src/server/RemoteStoreImp.java" />
+        <option value="$PROJECT_DIR$/src/server/Server.java" />
+        <option value="$PROJECT_DIR$/src/server/ServerNode.java" />
+        <option value="$PROJECT_DIR$/src/service/Log.java" />
         <option value="$PROJECT_DIR$/src/service/Store.java" />
+        <option value="$PROJECT_DIR$/src/service/Message.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
@@ -190,6 +271,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -200,20 +283,41 @@
             <path>
               <item name="KVStore" type="b2602c69:ProjectViewProjectNode" />
               <item name="KVStore" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="KVStore" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KVStore" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="KVStore" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KVStore" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="KVStore" type="b2602c69:ProjectViewProjectNode" />
               <item name="KVStore" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="rpc" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="KVStore" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KVStore" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="KVStore" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KVStore" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -240,13 +344,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.RMIClient">
-    <configuration name="RMIClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="rpc.RMIClient" />
+  <component name="RunManager" selected="Application.ServerNode">
+    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="client.Client" />
       <module name="KVStore" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="rpc.*" />
+          <option name="PATTERN" value="server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -254,12 +358,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RMIServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="rpc.RMIServer" />
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="server.Server" />
       <module name="KVStore" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="rpc.*" />
+          <option name="PATTERN" value="server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerNode" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="server.ServerNode" />
+      <module name="KVStore" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -272,7 +389,7 @@
       <module name="KVStore" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="rpc.*" />
+          <option name="PATTERN" value="server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -293,33 +410,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UDPServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="server.UDPServer" />
-      <module name="KVStore" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
+      <item itemvalue="Application.Client" />
+      <item itemvalue="Application.Server" />
       <item itemvalue="Application.TCPServer" />
-      <item itemvalue="Application.UDPServer" />
       <item itemvalue="Application.UDPClient" />
-      <item itemvalue="Application.RMIServer" />
-      <item itemvalue="Application.RMIClient" />
+      <item itemvalue="Application.ServerNode" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.RMIClient" />
-        <item itemvalue="Application.RMIServer" />
+        <item itemvalue="Application.ServerNode" />
         <item itemvalue="Application.TCPServer" />
         <item itemvalue="Application.UDPClient" />
-        <item itemvalue="Application.UDPServer" />
       </list>
     </recent_temporary>
   </component>
@@ -356,7 +458,9 @@
       <workItem from="1551760704136" duration="320000" />
       <workItem from="1551849494286" duration="6000" />
       <workItem from="1551849520127" duration="597000" />
-      <workItem from="1551856680925" duration="665000" />
+      <workItem from="1551856680925" duration="9359000" />
+      <workItem from="1551984386317" duration="8581000" />
+      <workItem from="1551995463170" duration="3775000" />
     </task>
     <servers />
   </component>
@@ -369,7 +473,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48020000" />
+    <option name="totallyTimeSpent" value="69070000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -381,23 +485,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23319027" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1695279" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3283767" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49713877" weight="0.3283767" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.329602" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32961586" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3283767" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.26022306" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5028612" side_tool="true" weight="0.3283767" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49928468" weight="0.3283767" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
@@ -438,44 +542,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/TCPClient.java" />
+    <entry file="file://$PROJECT_DIR$/src/client/UDPClient.java" />
+    <entry file="file://$PROJECT_DIR$/src/server/UDPServer.java" />
+    <entry file="file://$PROJECT_DIR$/src/server/TCPServer.java" />
+    <entry file="file://$PROJECT_DIR$/src/service/Service.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/src.zip!/java/util/logging/Level.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="65" column="13" selection-start-line="65" selection-start-column="13" selection-end-line="65" selection-end-column="13" />
+        <state relative-caret-position="172">
+          <caret line="123" column="30" selection-start-line="123" selection-start-column="30" selection-end-line="123" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/TCPClient.java">
+    <entry file="file://$PROJECT_DIR$/src/server/RemoteStore.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="56" selection-start-line="56" selection-end-line="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/UDPClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1455">
-          <caret line="104" selection-start-line="104" selection-end-line="123" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="1170">
-            <caret line="78" column="3" selection-start-line="78" selection-start-column="3" selection-end-line="78" selection-end-column="3" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rpc/RMIServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="46" column="43" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="43" />
+        <state relative-caret-position="285">
+          <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -484,42 +566,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/client/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/Service.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/Store.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="28" column="26" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rpc/RMIService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rpc/RMIStore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
+        <state relative-caret-position="144">
+          <caret line="92" selection-start-line="92" selection-end-line="98" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -528,38 +576,111 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" selection-start-line="26" selection-end-line="28" selection-end-column="7" />
+        <state relative-caret-position="150">
+          <caret line="59" selection-start-line="59" selection-end-line="61" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#782#783#0" expanded="true" />
+            <element signature="e#816#817#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/UDPServer.java">
+    <entry file="file://$PROJECT_DIR$/src/server/ServerNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="96" selection-start-line="96" selection-end-line="102" selection-end-column="13" />
+        <state relative-caret-position="120">
+          <caret line="27" column="33" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/TCPServer.java">
+    <entry file="file://$PROJECT_DIR$/src/server/RemoteStoreImp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="57" column="28" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
+        <state relative-caret-position="240">
+          <caret line="116" column="30" selection-start-line="116" selection-start-column="30" selection-end-line="116" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/rpc/RMIClient.java">
+    <entry file="file://$PROJECT_DIR$/src/service/Log.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="67" column="23" lean-forward="true" selection-start-line="67" selection-start-column="23" selection-end-line="67" selection-end-column="23" />
+        <state relative-caret-position="284">
+          <caret line="41" column="37" selection-start-line="41" selection-start-column="37" selection-end-line="41" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#326#327#0" expanded="true" />
+            <element signature="e#367#368#0" expanded="true" />
+            <element signature="e#486#487#0" expanded="true" />
+            <element signature="e#530#531#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/Store.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="85" column="29" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#557#558#0" expanded="true" />
+            <element signature="e#606#607#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/Message.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#1566#1567#0" expanded="true" />
+            <element signature="e#1592#1593#0" expanded="true" />
+            <element signature="e#1630#1631#0" expanded="true" />
+            <element signature="e#1660#1661#0" expanded="true" />
+            <element signature="e#1692#1693#0" expanded="true" />
+            <element signature="e#1720#1721#0" expanded="true" />
+            <element signature="e#1762#1763#0" expanded="true" />
+            <element signature="e#1796#1797#0" expanded="true" />
+            <element signature="e#1829#1830#0" expanded="true" />
+            <element signature="e#1855#1856#0" expanded="true" />
+            <element signature="e#1896#1897#0" expanded="true" />
+            <element signature="e#1926#1927#0" expanded="true" />
+            <element signature="e#1959#1960#0" expanded="true" />
+            <element signature="e#1988#1989#0" expanded="true" />
+            <element signature="e#2032#2033#0" expanded="true" />
+            <element signature="e#2068#2069#0" expanded="true" />
+            <element signature="e#2101#2102#0" expanded="true" />
+            <element signature="e#2130#2131#0" expanded="true" />
+            <element signature="e#2174#2175#0" expanded="true" />
+            <element signature="e#2210#2211#0" expanded="true" />
+            <element signature="e#2239#2240#0" expanded="true" />
+            <element signature="e#2266#2267#0" expanded="true" />
+            <element signature="e#2304#2305#0" expanded="true" />
+            <element signature="e#2336#2337#0" expanded="true" />
+            <element signature="e#2368#2369#0" expanded="true" />
+            <element signature="e#2462#2463#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="382">
+            <caret line="53" column="180" selection-start-line="53" selection-start-column="180" selection-end-line="53" selection-end-column="180" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

@@ -6,69 +6,52 @@ import java.util.Map;
 /**
  * The Store class is a service that provides a key-value store
  */
-public class Store implements Service {
+public class Store {
     private Map<String, String> store;    /* the store */
-    private static Store storeInstance = null;
 
-    // singleton
-    private Store() {
+    /**
+     * Default constructor
+     */
+    public Store() {
         store = new HashMap<>();
+        store.put("a", "a");
+        store.put("b", "b");
+        store.put("c", "c");
+        store.put("d", "d");
+        store.put("e", "e");
     }
 
-    public static Service getInstance() {
-        if (storeInstance == null) {
-            storeInstance = new Store();
-            populate(storeInstance.store);
-        }
-        return storeInstance;
+    /**
+     * Construcotr for copy
+     *
+     * @param store store map
+     */
+    private Store(Map<String, String> store) {
+        this.store = new HashMap<>(store);
     }
 
-    private static void populate(Map<String, String> map) {
-        map.put("a", "a");
-        map.put("b", "b");
-        map.put("c", "c");
-        map.put("d", "d");
-        map.put("e", "e");
-    }
-
-    @Override
     /**
      * The service processes the request
      *
-     * @param request request to process
+     * @param message request to process
      * @return response to the request
      */
-    public synchronized String process(String request) {
-        String[] msg = request.split(",");
-        String ope = msg[0].toUpperCase();
-
+    public synchronized Message process(Message message) {
         // handle PUT/GET/DELETE request
-        if (ope.equals("PUT")) {
-            if (msg.length != 3) {
-                return "received acknowledging PUT with an invalid KEY, VALUE pair";
-            }
-            String key = msg[1], value = msg[2];
-            put(key, value);
-            return "succeed to PUT " + key + " " + value;
-        } else if (ope.equals("GET")) {
-            if (msg.length != 2) {
-                return "received acknowledging GET with an invalid request format";
-            }
-            if (get(msg[1]) == null) {
-                return "KEY doesn't exist";
-            }
-            return "succeed to get " + "\'" + get(msg[1]) + "\' of KEY " + msg[1];
-        } else if (ope.equals("DELETE")) {
-            if (msg.length != 2) {
-                return "received acknowledging DELETE with an invalid request format";
-            }
-            if (!delete(msg[1])) {
-                return "KEY doesn't exist";
-            }
-            return "succeed to delete KEY " + msg[1];
+        switch (message.getOpe()) {
+            case GET:
+                message.setValue(get(message.getKey()));
+                message.setResult(message.getValue() == null ? Message.Result.FAILED : Message.Result.SUCCESS);
+                break;
+            case PUT:
+                message.setResult(put(message.getKey(), message.getValue()) ? Message.Result.SUCCESS : Message.Result.FAILED);
+                break;
+            case DELETE:
+                message.setResult(delete(message.getKey()) ? Message.Result.SUCCESS : Message.Result.FAILED);
+                break;
         }
-
-        return "received unknown request: " + request;
+        message.setStatus(Message.Status.COMMITTED);
+        return message;
     }
 
     /**
@@ -104,6 +87,13 @@ public class Store implements Service {
         boolean contains = store.containsKey(key);
         store.remove(key);
         return contains;
+    }
+
+    /**
+     * @return a copy of this store
+     */
+    public Store localCache() {
+        return new Store(store);
     }
 
 }

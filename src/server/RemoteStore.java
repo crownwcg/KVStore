@@ -1,4 +1,6 @@
-package rpc;
+package server;
+
+import service.Message;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -6,13 +8,13 @@ import java.rmi.RemoteException;
 /**
  * The interface provides process function for a RMI server to work
  */
-public interface RMIService extends Remote {
+public interface RemoteStore extends Remote {
     /**
      * The service processes the request
      *
-     * @param request request to process
+     * @param message request to process
      * @throws RemoteException
      * @return response to the request
      */
-    String process(String request, int id) throws RemoteException;
+    Message process(Message message, int id) throws RemoteException;
 }
