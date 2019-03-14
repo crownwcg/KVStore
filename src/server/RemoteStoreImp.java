@@ -25,7 +25,7 @@ public class RemoteStoreImp implements RemoteStore {
      */
     public RemoteStoreImp(Store store, List<Integer> ports) {
         this.store = store;
-        this.ports = ports;
+        this.ports = new ArrayList<>(ports);
     }
 
     @Override
@@ -62,15 +62,16 @@ public class RemoteStoreImp implements RemoteStore {
     private Message update(Message message) {
         // initiate servers connection at first
         if (clients.size() != ports.size()) {
+            Log.info("initilize the server group");
             unionServers();
         }
 
         // if message received from client, do multicast
-        message.setStatus(Message.Status.PREPARED);
         if (message.getType() == Message.Type.CLIENT) {
             message.setType(Message.Type.SERVER);
 
             // get response from other servers
+            Log.info("multicasting to other servers");
             List<Message> messages = new ArrayList<>();
             for (Client c : clients) {
                 messages.add(c.send(message));
@@ -79,7 +80,9 @@ public class RemoteStoreImp implements RemoteStore {
             // check if any response is aborted
             for (Message msg : messages) {
                 if (msg.getStatus() == Message.Status.ABORTED) {
+                    Log.warning("message is aborted by a server");
                     message.setStatus(Message.Status.ABORTED);
+                    Log.info("aborting the message");
                     for (Client c : clients) {
                         c.send(message);
                     }
@@ -88,8 +91,10 @@ public class RemoteStoreImp implements RemoteStore {
             }
 
             // no abortion, commit updates
+            Log.info("multicasting to commit the update");
+            message.setStatus(Message.Status.COMMITTED);
             for (Client c : clients) {
-                c.send(message);
+                c.send(message).toString();
             }
             return store.process(message);
         }
@@ -101,13 +106,16 @@ public class RemoteStoreImp implements RemoteStore {
         switch (message.getStatus()) {
             case PREPARED:
                 cache = store.localCache();
+                Log.info("cache the update");
                 return cache.process(message);
             case COMMITTED:
                 store = cache;
                 cache = null;
+                Log.info("commit the update");
                 break;
             case ABORTED:
                 cache = null;
+                Log.info("abort the update");
                 break;
         }
         return message;

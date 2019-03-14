@@ -21,13 +21,8 @@ public class Store {
         store.put("e", "e");
     }
 
-    /**
-     * Construcotr for copy
-     *
-     * @param store store map
-     */
-    private Store(Map<String, String> store) {
-        this.store = new HashMap<>(store);
+    public Store(Store store) {
+        this.store = new HashMap<>(store.store);
     }
 
     /**
@@ -93,7 +88,7 @@ public class Store {
      * @return a copy of this store
      */
     public Store localCache() {
-        return new Store(store);
+        return new Store(this);
     }
 
 }

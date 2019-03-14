@@ -15,7 +15,7 @@ import java.util.List;
 public class Server {
     private int port = 9000;            /* port number */
     private Store store = new Store();  /* service of the server */
-    private List<Integer> ports = new ArrayList<>();        /* peer servers' port numbers */
+    protected List<Integer> ports = new ArrayList<>();        /* peer servers' port numbers */
 
     /**
      * Default constructor
@@ -31,10 +31,6 @@ public class Server {
     public Server(int port, Store store) {
         this.port = port;
         this.store = store;
-    }
-
-    public void setDistributedPorts(List<Integer> ports) {
-        this.ports = ports;
     }
 
     /**
@@ -64,7 +60,7 @@ public class Server {
         Server server = new Server();
         if (args.length == 1) {
             try {
-                int port = Integer.parseInt(args[1]);
+                int port = Integer.parseInt(args[0]);
                 server = new Server(port, new Store());
             } catch (Exception e) {
                 e.printStackTrace();

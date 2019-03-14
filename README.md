@@ -55,5 +55,5 @@ When servers start in five terminals, one client can run in one terminal to conn
 
 After running
 ```
-rm client/*.class server/*.class service/*.class rpc/*.class
+rm client/*.class server/*.class service/*.class
 ```

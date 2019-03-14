@@ -80,7 +80,6 @@ public class Client {
                 System.out.println("Unknow operation: please input put or get or delete");
                 return  null;
         }
-        msg.setStatus(Message.Status.PREPARED);
         return msg;
     }
 

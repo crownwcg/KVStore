@@ -2,15 +2,10 @@ package server;
 
 import service.Store;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Node server of replica
  */
 public class ServerNode extends Server {
-    private List<Integer> ports = new ArrayList<>();   /* other servers' port number */
-
     /**
      * Construtor with ports array, first element is the port number of the server,
      * the followings are other servers' port numbers
