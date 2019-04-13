@@ -53,6 +53,8 @@ java server.ServerNode 1003 1000 1001 1002
 java server.ServerNode 1004 1000 1001 1002 1003
 ```
 
+You could add more than 5 servers using the above format.
+
 #### Run Client
 
 By using customer port number and hostname
