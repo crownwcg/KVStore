@@ -1,72 +1,27 @@
 package server;
 
-import service.Log;
-import service.Store;
+import message.ClientMessage;
+import message.ServerMessage;
 
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-import java.util.List;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 
-/**
- * The Server class is a server using RMI
- */
-public class Server {
-    private int port = 9000;            /* port number */
-    private Store store = new Store();  /* service of the server */
-    protected List<Integer> ports = new ArrayList<>();        /* peer servers' port numbers */
-
+public interface Server extends Remote {
     /**
-     * Default constructor
-     */
-    public Server() {}
-
-    /**
-     * Constructor with port number and store
+     * The service processes the request
      *
-     * @param port port number of the server
-     * @param store service of the server
+     * @param clientMessage request to process
+     * @throws RemoteException remote exception
+     * @return response to the request
      */
-    public Server(int port, Store store) {
-        this.port = port;
-        this.store = store;
-    }
+    ClientMessage process(ClientMessage clientMessage) throws RemoteException;
 
     /**
-     * Start the server
+     * Process server message from other servers
+     *
+     * @param serverMessage message from other servers
+     * @throws RemoteException remote exception
+     * @return response to the server
      */
-    public void start() {
-        try {
-            RemoteStoreImp rmiServiceImp = new RemoteStoreImp(store, ports);
-            RemoteStore service = (RemoteStore) UnicastRemoteObject.exportObject(rmiServiceImp, port);
-            Log.info("remote object exported");
-
-            Registry registry = LocateRegistry.createRegistry(port);
-            Log.info("rmi registry created");
-
-            registry.bind("Server", service);
-            Log.info("server ready in port:" + port + " using name \'Server\'");
-        } catch (Exception e) {
-            Log.exceptionThrown(e, "unable to initialize the server");
-            return;
-        }
-    }
-
-    /**
-     * Local test for RMI server
-     */
-    public static void main(String[] args) {
-        Server server = new Server();
-        if (args.length == 1) {
-            try {
-                int port = Integer.parseInt(args[0]);
-                server = new Server(port, new Store());
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println("Please check the format of port number");
-            }
-        }
-        server.start();
-    }
+    ServerMessage process(ServerMessage serverMessage) throws RemoteException;
 }

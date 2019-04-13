@@ -1,8 +1,9 @@
 package client;
 
+import message.ClientMessage;
+import server.Server;
 import service.Log;
-import service.Message;
-import server.RemoteStore;
+import message.Message;
 
 import java.rmi.registry.LocateRegistry;
 import java.util.Scanner;
@@ -13,7 +14,7 @@ import java.util.Scanner;
 public class Client {
     private String hostname = "localhost";      /* hostname of the server */
     private int port = 9000;                    /* port number of the server */
-    private RemoteStore remoteStore;            /* remote store object */
+    private Server server;                      /* remote store object */
 
     public Client() {}
 
@@ -31,10 +32,10 @@ public class Client {
     /**
      * Connect to the specific server
      */
-    public void connect() {
+    private void connect() {
         try {
             // Looking up the registry for the remote object
-            remoteStore = (RemoteStore) LocateRegistry.getRegistry(hostname, port).lookup("Server");
+            server = (Server) LocateRegistry.getRegistry(hostname, port).lookup("Server");
             Log.registryFound(hostname, port, "Server");
         } catch (Exception e) {
             Log.exceptionThrown(e, "connection to " + hostname + ":" + port + " failed");
@@ -47,26 +48,27 @@ public class Client {
      * @param msg msg to send
      * @return response string from the server
      */
-    public Message send(Message msg) {
+    private Message send(ClientMessage msg) {
+        msg.setClientId(this.hashCode());
         Message response = msg;
         try {
-            response = remoteStore.process(msg, this.hashCode());
-            Log.info("response received from " + hostname + ":" + port + " Operation status: " + response.getStatus());
+            response = server.process(msg);
+            Log.info("response received from " + hostname + ":" + port + " Operation status: " + response.getResult());
         } catch (Exception e) {
             Log.exceptionThrown(e,"unable to get response");
         }
         return response;
     }
 
-    private static Message formMessage(String s) {
+    private static ClientMessage formMessage(String s) {
         String[] request = s.split(",");
-        if (request == null || (request.length != 2 && request.length != 3)) {
+        if (request.length != 2 && request.length != 3) {
             System.out.println(request.length);
             System.out.println("Please check your format of input: " + s);
             return null;
         }
 
-        Message msg = new Message(request[1], request.length == 3 ? request[2] : "", Message.Operation.GET);
+        ClientMessage msg = new ClientMessage(request[1], request.length == 3 ? request[2] : "", Message.Operation.GET);
         switch (request[0].toLowerCase()) {
             case "get":
                 break;
@@ -103,7 +105,7 @@ public class Client {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("Please input your request: format: Operation,key(,value)");
-            Message request = formMessage(scanner.nextLine());
+            ClientMessage request = formMessage(scanner.nextLine());
             if (request != null) {
                 Message response = client.send(request);
                 Log.info(response.toString());

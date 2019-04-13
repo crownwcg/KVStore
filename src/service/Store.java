@@ -1,12 +1,14 @@
 package service;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * The Store class is a service that provides a key-value store
  */
-public class Store {
+public class Store implements Serializable {
+    private static final long serialVersionUID = 20120734325400L;
     private Map<String, String> store;    /* the store */
 
     /**
@@ -23,30 +25,6 @@ public class Store {
 
     public Store(Store store) {
         this.store = new HashMap<>(store.store);
-    }
-
-    /**
-     * The service processes the request
-     *
-     * @param message request to process
-     * @return response to the request
-     */
-    public synchronized Message process(Message message) {
-        // handle PUT/GET/DELETE request
-        switch (message.getOpe()) {
-            case GET:
-                message.setValue(get(message.getKey()));
-                message.setResult(message.getValue() == null ? Message.Result.FAILED : Message.Result.SUCCESS);
-                break;
-            case PUT:
-                message.setResult(put(message.getKey(), message.getValue()) ? Message.Result.SUCCESS : Message.Result.FAILED);
-                break;
-            case DELETE:
-                message.setResult(delete(message.getKey()) ? Message.Result.SUCCESS : Message.Result.FAILED);
-                break;
-        }
-        message.setStatus(Message.Status.COMMITTED);
-        return message;
     }
 
     /**
@@ -87,7 +65,7 @@ public class Store {
     /**
      * @return a copy of this store
      */
-    public Store localCache() {
+    public Store duplicate() {
         return new Store(this);
     }
 
